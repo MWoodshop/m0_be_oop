@@ -67,9 +67,7 @@ class Dragon
 
   def eat
     @times_eaten += 1
-    return unless @times_eaten >= 4
-
-    @is_hungry = false
+    @is_hungry = false if @times_eaten >= 4
   end
 end
 
@@ -102,6 +100,8 @@ p smaug.is_hungry
 
 p ''
 class Hobbit
+  attr_reader :name, :disposition, :age, :is_adult, :is_old, :has_ring
+
   def initialize(name, disposition, age = 0, is_adult = false, is_old = false)
     @name = name
     @disposition = disposition
@@ -109,9 +109,7 @@ class Hobbit
     @is_adult = is_adult
     @is_adult = true if @age >= 33
     @is_old = is_old
-    return unless @name == 'Frodo'
-
-    @has_ring = true
+    @has_ring = true if @name == 'Bilbo'
   end
 
   def celebrate_birthday
@@ -130,6 +128,8 @@ end
 
 bilbo = Hobbit.new('Bilbo', 'Adventurous', 100)
 p bilbo
+
+p bilbo.has_ring
 
 bilbo.celebrate_birthday
 p bilbo
