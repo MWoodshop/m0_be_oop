@@ -102,23 +102,18 @@ p ''
 class Hobbit
   attr_reader :name, :disposition, :age, :is_adult, :is_old, :has_ring
 
-  def initialize(name, disposition, age = 0, is_adult = false, is_old = false)
-    @name = name
-    @disposition = disposition
-    @age = age
-    @is_adult = is_adult
-    @is_adult = true if @age >= 33
-    @is_old = is_old
-    @has_ring = true if @name == 'Bilbo'
+  def initialize(name, disposition, age = 0)
+    @name           =   name
+    @disposition    =   disposition
+    @age            =   age
+    @is_adult       =   false
+    @is_old         =   false
   end
 
   def celebrate_birthday
     @age += 1
-    if @age >= 101
-      @is_old = true
-    elsif @age >= 33
-      @is_adult = true
-    end
+    @is_adult = true && @age >= 33
+    @is_old   = true && @age >= 101
   end
 
   def has_ring
@@ -129,7 +124,7 @@ end
 bilbo = Hobbit.new('Bilbo', 'Adventurous', 100)
 p bilbo
 
-p bilbo.has_ring
+p "Does Bilbo have the ring? #{bilbo.has_ring}"
 
 bilbo.celebrate_birthday
 p bilbo
@@ -141,6 +136,8 @@ p ''
 
 frodo = Hobbit.new('Frodo', 'Brave', 31)
 p frodo
+
+p "Does Frodo have the ring? #{frodo.has_ring}"
 
 frodo.celebrate_birthday
 p frodo
